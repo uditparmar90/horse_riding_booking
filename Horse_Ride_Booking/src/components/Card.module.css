@@ -1,0 +1,17 @@
+.parentCard{
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 5px;
+    margin:20px 130px;
+    padding-top: 20px ;
+    background-color: rgb(240, 252, 255);
+    padding: 10px;
+}
+
+.cardItems{
+    /* display: flex; */
+    align-items: center;
+    flex-direction: column;
+
+}
