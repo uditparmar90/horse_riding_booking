@@ -8,7 +8,9 @@ const Card = ({ horseData }) => {
   const [selectedHorse, setselectedHorse] = useState({ id: "", price: 0 });
 
   const handleBookRide = (id, price) => {
+    console.log(id, price);
     setselectedHorse({ id, price });
+
     setshowModal(true);
   };
   const closeModal = () => {
@@ -36,12 +38,11 @@ const Card = ({ horseData }) => {
               <div className="card-body">
                 <h4 className="card-title">{horse.horseName}</h4>
 
-                {/* Button trigger modal */}
                 <button
                   type="button"
                   className="btn btn-primary"
                   data-toggle="modal"
-                  onClick={() => handleBookRide(horse.id, horse.price)}
+                  onClick={() => handleBookRide(horse.horseId, horse.price)}
                 >
                   Book now {horse.price}
                 </button>

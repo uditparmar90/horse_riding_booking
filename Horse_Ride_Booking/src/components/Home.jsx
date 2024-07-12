@@ -2,6 +2,7 @@ import Carousel from "./Carousel";
 import Navbar from "./Navbar";
 import Card from "./Card";
 import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 const Home = () => {
   const [horseData, setHorseData] = useState([
@@ -33,9 +34,11 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
-      <Carousel />
-      <Card horseData={horseData} />
+      <BrowserRouter>
+        <Navbar />
+        <Carousel />
+        <Card horseData={horseData} />
+      </BrowserRouter>
     </>
   );
 };
