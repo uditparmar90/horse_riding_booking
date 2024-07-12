@@ -3,10 +3,10 @@ import styles from "./BookingConfirmation.module.css";
 import { gsap } from "gsap";
 
 const BookingConfirmation = (
-  /*{ horseName, sessionDate, closePopup }*/ userDetail,
-  bookedHorse
+  /*{ horseName, sessionDate, closePopup }*/ userDetail
 ) => {
-  console.log(bookedHorse, userDetail);
+  console.log(userDetail.selectedHorseId);
+  console.log(userDetail.userDetail);
   React.useEffect(() => {
     gsap.fromTo(
       ".popup",
@@ -23,7 +23,7 @@ const BookingConfirmation = (
   return (
     <div className={styles.overlay}>
       <div className={`${styles.popup} popup`}>
-        <p>Thank you for booking!</p>
+        <p>Thank you {userDetail.userDetail.userName} for booking!</p>
         {/* <h3>{userDetail}</h3> */}
         <p>
           {/* You have booked a session with <strong>{horseName}</strong>. */}

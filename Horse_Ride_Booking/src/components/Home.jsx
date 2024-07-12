@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Card from "./Card";
 import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
 const Home = () => {
   const [horseData, setHorseData] = useState([
@@ -34,11 +35,13 @@ const Home = () => {
 
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        <Carousel />
-        <Card horseData={horseData} />
-      </BrowserRouter>
+      <Provider>
+        <BrowserRouter>
+          <Navbar />
+          <Carousel />
+          <Card horseData={horseData} />
+        </BrowserRouter>
+      </Provider>
     </>
   );
 };
