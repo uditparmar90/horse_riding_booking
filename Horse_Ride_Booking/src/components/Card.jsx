@@ -44,7 +44,7 @@ const Card = ({ horseData }) => {
                   data-toggle="modal"
                   onClick={() => handleBookRide(horse.horseId, horse.price)}
                 >
-                  Book now {horse.price}
+                  Book now Rs. {horse.price}
                 </button>
               </div>
             </div>
@@ -52,9 +52,10 @@ const Card = ({ horseData }) => {
       </div>
       <HorseRideBookingForm
         show={showModal}
+        horseData={horseData}
         onclose={closeModal}
         horseId={selectedHorse.id}
-        horsePrice={selectedHorse.price}
+        // horsePrice={selectedHorse.price}
       />
     </>
   );
