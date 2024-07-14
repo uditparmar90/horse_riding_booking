@@ -35,13 +35,13 @@ const Home = () => {
 
   return (
     <>
-      <Provider>
-        <BrowserRouter>
-          <Navbar />
-          <Carousel />
-          <Card horseData={horseData} />
-        </BrowserRouter>
-      </Provider>
+      {/* <Provider> */}
+      {/* <BrowserRouter> */}
+      <Navbar />
+      <Carousel />
+      <Card horseData={horseData} />
+      {/* </BrowserRouter> */}
+      {/* </Provider> */}
     </>
   );
 };

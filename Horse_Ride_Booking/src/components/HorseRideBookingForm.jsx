@@ -3,6 +3,7 @@ import styles from "./BookingConfirmation.module.css";
 import BookingConfirmation from "./BookingConfirmation";
 
 const HorseRideBookingForm = (horseData) => {
+  // console.log(horseData.horseData);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const selectedHorseId = horseData.horseId;
 
@@ -74,6 +75,7 @@ const HorseRideBookingForm = (horseData) => {
                   <BookingConfirmation
                     userDetail={userDetail}
                     selectedHorseId={horseData.horseId}
+                    horseData={horseData.horseData}
                   />
                 ) : (
                   <form
