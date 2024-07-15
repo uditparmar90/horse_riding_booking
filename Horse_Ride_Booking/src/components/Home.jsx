@@ -1,12 +1,9 @@
 import Carousel from "./Carousel";
 import Navbar from "./Navbar";
 import Card from "./Card";
-import { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
 
 const Home = () => {
-  const [horseData, setHorseData] = useState([
+  const horseData = [
     {
       img: "src/assets/white_horse.jpg",
       horseId: 1,
@@ -31,7 +28,7 @@ const Home = () => {
       horseName: "MarWari_horse",
       price: 15000,
     },
-  ]);
+  ];
 
   return (
     <>

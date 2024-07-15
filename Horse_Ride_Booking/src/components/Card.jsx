@@ -10,9 +10,9 @@ const Card = ({ horseData }) => {
   const handleBookRide = (id, price) => {
     console.log(id, price);
     setselectedHorse({ id, price });
-
     setshowModal(true);
   };
+
   const closeModal = () => {
     setshowModal(false);
     setselectedHorse({ id: "", price: 0 });
@@ -24,30 +24,30 @@ const Card = ({ horseData }) => {
         <div>
           <p className="text-left">Available Rides</p>
         </div>
-        <div className="main-container" style={{ display: "flex" }}>
+        <div className="row">
           {Array.isArray(horseData) &&
             horseData.map((horse) => (
               <div
-                className={`card ${styles.cardItems}`}
+                className={`col-md-4 col-sm-6 col-xs-12 mb-3 ${styles.cardItems}`}
                 key={horse.horseId}
-                style={{ width: "18rem" }}
               >
-                <img
-                  className="card-img-top"
-                  src={horse.img}
-                  alt="Card image cap"
-                />
-                <div className="card-body">
-                  <h4 className="card-title">{horse.horseName}</h4>
-
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    data-toggle="modal"
-                    onClick={() => handleBookRide(horse.horseId, horse.price)}
-                  >
-                    Book now Rs. {horse.price}
-                  </button>
+                <div className="card" style={{ width: "100%" }}>
+                  <img
+                    className="card-img-top"
+                    src={horse.img}
+                    alt="Card image cap"
+                  />
+                  <div className="card-body">
+                    <h4 className="card-title">{horse.horseName}</h4>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      data-toggle="modal"
+                      onClick={() => handleBookRide(horse.horseId, horse.price)}
+                    >
+                      Book now Rs. {horse.price}
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -58,7 +58,6 @@ const Card = ({ horseData }) => {
         horseData={horseData}
         onclose={closeModal}
         horseId={selectedHorse.id}
-        // horsePrice={selectedHorse.price}
       />
     </>
   );

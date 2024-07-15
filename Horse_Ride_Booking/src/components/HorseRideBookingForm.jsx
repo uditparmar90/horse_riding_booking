@@ -1,152 +1,114 @@
-import { useRef, useState, React } from "react";
-import styles from "./BookingConfirmation.module.css";
+import { useRef, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import BookingConfirmation from "./BookingConfirmation";
 import gsap from "gsap";
 
-const HorseRideBookingForm = (horseData) => {
+const HorseRideBookingForm = ({ show, horseData, horseId, onclose }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const selectedHorseId = horseData.horseId;
-  // React.useEffect(() => {
-  //   gsap.fromTo(
-  //     ".popup",
-  //     { opacity: 0, scale: 0.5 },
-  //     { opacity: 1, scale: 1, duration: 0.5 }
-  //   );
-  // }, []);
-
   const [userDetail, setUserDetail] = useState({});
+  const selectedHorseId = horseId;
+
   const userNameElement = useRef();
   const userPhoneElement = useRef();
   const userEmailElement = useRef();
   const userDateElement = useRef();
   const userTimeElement = useRef();
 
+  useEffect(() => {
+    if (show) {
+      gsap.fromTo(
+        ".modal-dialog",
+        { opacity: 0, scale: 0.5 },
+        { opacity: 1, scale: 1, duration: 0.5 }
+      );
+    }
+  }, [show]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const userName = userNameElement.current.value;
-    const userPnone = userPhoneElement.current.value;
+    const userPhone = userPhoneElement.current.value;
     const userEmail = userEmailElement.current.value;
     const userDate = userDateElement.current.value;
     const userTime = userTimeElement.current.value;
-    setUserDetail({ userName, userPnone, userEmail, userDate, userTime });
-    console.log(userDetail, horseData.horseId);
-
+    setUserDetail({ userName, userPhone, userEmail, userDate, userTime });
     setIsSubmitted(true);
   };
-  if (!horseData.show) {
+
+  if (!show) {
     return null;
-  } else {
-    const select = Array.isArray(
-      horseData.horseData.filter((selectedHorse) => selectedHorse.horseId)
-    );
-    console.log(select);
   }
-  const onclose = () => {
-    console.log("close");
-    setIsSubmitted(false);
-  };
 
   return (
     <>
-      <div className={styles.overlay}>
-        <div className={`${styles.popup} popup`} style={{ width: "auto" }}>
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLongTitle">
-                  Book horse rideing
-                </h5>
-                <button
-                  type="button"
-                  className="close"
-                  aria-label="Close"
-                  onClick={onclose}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div
-                className="modal-body"
-                style={{
-                  display: "flex",
-                }}
+      <div
+        className={`modal fade ${show ? "show" : ""}`}
+        style={{ display: show ? "block" : "none" }}
+        tabIndex="-1"
+        role="dialog"
+      >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Book horse riding</h5>
+              <button
+                type="button"
+                className="close"
+                aria-label="Close"
+                onClick={onclose}
               >
-                {isSubmitted ? (
-                  <BookingConfirmation
-                    userDetail={userDetail}
-                    selectedHorseId={horseData.horseId}
-                    horseData={horseData.horseData}
-                  />
-                ) : (
-                  <form
-                    onSubmit={handleSubmit}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <div
-                      style={{
-                        padding: "10px",
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <div>
-                        <div className="form-group">
-                          {Array.isArray(horseData.horseData) &&
-                            horseData.horseData.map((horse) => (
-                              <div key={horse.horseId}>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                  }}
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              {isSubmitted ? (
+                <BookingConfirmation
+                  userDetail={userDetail}
+                  selectedHorseId={horseId}
+                  horseData={horseData}
+                />
+              ) : (
+                <form onSubmit={handleSubmit}>
+                  <div className="row">
+                    <div className="col-md-6">
+                      {Array.isArray(horseData) &&
+                        horseData.map((horse) => (
+                          <div key={horse.horseId} className="form-group">
+                            <div className="form-check d-flex align-items-center">
+                              <input
+                                type="checkbox"
+                                className="form-check-input"
+                                id={horse.horseId}
+                                value={horse.horseId}
+                                checked={horse.horseId === selectedHorseId}
+                                readOnly
+                              />
+                              <img
+                                className="card-img-top"
+                                src={horse.img}
+                                alt="Card image cap"
+                                style={{ height: "80px", width: "200px" }}
+                              />
+                              <div className="ms-3">
+                                <label
+                                  className="form-check-label"
+                                  htmlFor={horse.horseName}
                                 >
-                                  <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    id={horse.value}
-                                    value={horse.value}
-                                    checked={
-                                      horse.horseId == horseData.horseId
-                                        ? true
-                                        : false
-                                    }
-                                  />
-
-                                  <img
-                                    className="card-img-top"
-                                    src={horse.img}
-                                    alt="Card image cap"
-                                    style={{ height: "80px", width: "200px" }}
-                                  />
-                                  <div>
-                                    <label
-                                      className="form-check-label"
-                                      htmlFor={horse.horseName}
-                                      style={{ padding: "10px" }}
-                                    >
-                                      {horse.horseName}
-                                    </label>
-                                    <label
-                                      className="form-check-label"
-                                      htmlFor={horse.price}
-                                      style={{ padding: "10px" }}
-                                    >
-                                      Rs. {horse.price}
-                                    </label>
-                                  </div>
-                                </div>
-                                <hr />
+                                  {horse.horseName}
+                                </label>
+                                <br />
+                                <label className="form-check-label">
+                                  <span>Rs.</span> {horse.price}
+                                </label>
                               </div>
-                            ))}
-                        </div>
-                      </div>
+                            </div>
+                            <hr />
+                          </div>
+                        ))}
                     </div>
-                    <div>
-                      <div>
-                        <small htmlFor="name">Name</small>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label htmlFor="name">Name</label>
                         <input
                           type="text"
                           className="form-control"
@@ -155,9 +117,8 @@ const HorseRideBookingForm = (horseData) => {
                           ref={userNameElement}
                         />
                       </div>
-
-                      <div>
-                        <small htmlFor="number">Phone no.</small>
+                      <div className="form-group">
+                        <label htmlFor="number">Phone no.</label>
                         <input
                           type="number"
                           className="form-control"
@@ -166,14 +127,9 @@ const HorseRideBookingForm = (horseData) => {
                           ref={userPhoneElement}
                         />
                       </div>
-                      <div>
-                        <small htmlFor="Email">Email</small>
+                      <div className="form-group">
+                        <label htmlFor="Email">Email</label>
                         <input
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                          }}
                           type="email"
                           className="form-control"
                           id="Email"
@@ -181,51 +137,49 @@ const HorseRideBookingForm = (horseData) => {
                           ref={userEmailElement}
                         />
                       </div>
-                      <div>
-                        <small htmlFor="Email">Date</small>
-
+                      <div className="form-group">
+                        <label htmlFor="Date">Date</label>
                         <input
-                          id="Date"
-                          className="form-control"
                           type="date"
+                          className="form-control"
+                          id="Date"
                           ref={userDateElement}
                         />
                       </div>
-                      <div>
-                        <small htmlFor="Time">Time</small>
-
+                      <div className="form-group">
+                        <label htmlFor="Time">Time</label>
                         <input
-                          id="startDate"
-                          className="form-control"
                           type="time"
+                          className="form-control"
+                          id="Time"
                           ref={userTimeElement}
                         />
                       </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <button type="reset" className="btn btn-danger mt-3">
-                          reset
+                      <div className="d-flex justify-content-between mt-3">
+                        <button type="reset" className="btn btn-danger">
+                          Reset
                         </button>
-
-                        <button type="submit" className="btn btn-primary mt-3">
+                        <button type="submit" className="btn btn-primary">
                           Submit
                         </button>
                       </div>
                     </div>
-                  </form>
-                )}
-              </div>
-              <div className="modal-footer"></div>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>
       </div>
     </>
   );
+};
+
+HorseRideBookingForm.propTypes = {
+  show: PropTypes.bool.isRequired,
+  horseData: PropTypes.array.isRequired,
+  horseId: PropTypes.string.isRequired,
+  onclose: PropTypes.func.isRequired,
 };
 
 export default HorseRideBookingForm;

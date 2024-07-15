@@ -17,7 +17,7 @@
 }
 .main-container{
     display: flex; 
-    /* flex-direction: row; */
+    flex-direction: column;
 }
 @media only screen and (max-width: 600px) {
     .parentCard {
@@ -26,9 +26,10 @@
         align-items: center;
         margin: 0px;
         flex-direction: column;
+        /* flex-wrap: ; */
     }
     .main-container{
         display: flex; 
-        flex-direction: row;
+        flex-direction: column !important;
     }
   }
