@@ -4,13 +4,10 @@ import horse_logo from "../assets/horse_logo.png";
 const Navbar = () => {
   return (
     <nav
-      className="navbar navbar-expand-lg bg-light"
-      style={{ padding: "0px", margin: "0px 130px" }}
+      className="navbar navbar-expand-lg bg-light0"
+      style={{ margin: "0px 0px", padding: "0px" }}
     >
-      <div
-        className="container-fluid"
-        style={{ height: "47px", padding: "0px" }}
-      >
+      <div className="container-fluid">
         <a className="navbar-brand" href="#">
           <img style={{ height: "43px" }} src={horse_logo} />
         </a>
@@ -34,7 +31,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div>
+        <div className="navbar-item">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="#">

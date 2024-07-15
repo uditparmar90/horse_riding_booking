@@ -1,11 +1,18 @@
-import { useRef, useState } from "react";
+import { useRef, useState, React } from "react";
 import styles from "./BookingConfirmation.module.css";
 import BookingConfirmation from "./BookingConfirmation";
+import gsap from "gsap";
 
 const HorseRideBookingForm = (horseData) => {
-  // console.log(horseData.horseData);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const selectedHorseId = horseData.horseId;
+  // React.useEffect(() => {
+  //   gsap.fromTo(
+  //     ".popup",
+  //     { opacity: 0, scale: 0.5 },
+  //     { opacity: 1, scale: 1, duration: 0.5 }
+  //   );
+  // }, []);
 
   const [userDetail, setUserDetail] = useState({});
   const userNameElement = useRef();
@@ -34,22 +41,15 @@ const HorseRideBookingForm = (horseData) => {
     );
     console.log(select);
   }
-  const onclose = (horseData) => {
-    horseData.setshowModal(false);
+  const onclose = () => {
+    console.log("close");
+    setIsSubmitted(false);
   };
 
   return (
     <>
       <div className={styles.overlay}>
-        <div className={`${styles.popup} popup`} style={{ width: "700px" }}>
-          {/* <div
-          // className="modal fade"
-          id="exampleModalLong"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLongTitle"
-          aria-hidden="true"
-        > */}
+        <div className={`${styles.popup} popup`} style={{ width: "auto" }}>
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -60,7 +60,7 @@ const HorseRideBookingForm = (horseData) => {
                   type="button"
                   className="close"
                   aria-label="Close"
-                  onClick={() => onclose(horseData)}
+                  onClick={onclose}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -85,7 +85,13 @@ const HorseRideBookingForm = (horseData) => {
                       alignItems: "center",
                     }}
                   >
-                    <div style={{ padding: "20px" }}>
+                    <div
+                      style={{
+                        padding: "10px",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
                       <div>
                         <div className="form-group">
                           {Array.isArray(horseData.horseData) &&
@@ -216,7 +222,6 @@ const HorseRideBookingForm = (horseData) => {
               <div className="modal-footer"></div>
             </div>
           </div>
-          {/* </div> */}
         </div>
       </div>
     </>

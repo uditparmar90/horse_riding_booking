@@ -21,34 +21,37 @@ const Card = ({ horseData }) => {
   return (
     <>
       <div className={`${styles.parentCard}`}>
-        <p className="text-left">Available Rides</p>
+        <div>
+          <p className="text-left">Available Rides</p>
+        </div>
+        <div className="main-container" style={{ display: "flex" }}>
+          {Array.isArray(horseData) &&
+            horseData.map((horse) => (
+              <div
+                className={`card ${styles.cardItems}`}
+                key={horse.horseId}
+                style={{ width: "18rem" }}
+              >
+                <img
+                  className="card-img-top"
+                  src={horse.img}
+                  alt="Card image cap"
+                />
+                <div className="card-body">
+                  <h4 className="card-title">{horse.horseName}</h4>
 
-        {Array.isArray(horseData) &&
-          horseData.map((horse) => (
-            <div
-              className={`card ${styles.cardItems}`}
-              key={horse.horseId}
-              style={{ width: "18rem" }}
-            >
-              <img
-                className="card-img-top"
-                src={horse.img}
-                alt="Card image cap"
-              />
-              <div className="card-body">
-                <h4 className="card-title">{horse.horseName}</h4>
-
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  data-toggle="modal"
-                  onClick={() => handleBookRide(horse.horseId, horse.price)}
-                >
-                  Book now Rs. {horse.price}
-                </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-toggle="modal"
+                    onClick={() => handleBookRide(horse.horseId, horse.price)}
+                  >
+                    Book now Rs. {horse.price}
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
       <HorseRideBookingForm
         show={showModal}

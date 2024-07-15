@@ -17,12 +17,12 @@ const BookingConfirmation = (
       { opacity: 1, scale: 1, duration: 0.5 }
     );
   }, []);
-  // const date=userDetail.userDetail.userDate;
-  // const time=userDetail.userDetail.userDate;
-  // const formatDateTimeForCalendar = (date, time) => {
-  //   const formattedDate = new Date(`${date}T${time}`);
-  //   return formattedDate.toISOString().replace(/-|:|\.\d\d\d/g, "");
-  // };
+  const date = userDetail.userDetail.userDate;
+  const time = userDetail.userDetail.userDate;
+  const formatDateTimeForCalendar = (date, time) => {
+    const formattedDate = new Date(`${date}T${time}`);
+    return formattedDate.toISOString().replace(/-|:|\.\d\d\d/g, "");
+  };
 
   const handleInviteClick = () => {
     const calendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=Horse+Riding+Session&dates=${userDetail.userDateElement}&details=Horse+Name:+${selectedHorse.horseName}`;
@@ -50,8 +50,8 @@ const BookingConfirmation = (
         Add to Calendar
       </button>
       {/* <button className={styles.closeButton} onClick={closePopup}>
-          Close
-        </button> */}
+        Close
+      </button> */}
     </div>
     // </div>
   );

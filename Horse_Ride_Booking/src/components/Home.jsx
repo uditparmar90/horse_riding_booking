@@ -16,7 +16,7 @@ const Home = () => {
     {
       img: "src/assets/rasing_horse.png",
       horseId: 2,
-      horseName: "raceing horse",
+      horseName: "racing horse",
       price: 20000,
     },
     {

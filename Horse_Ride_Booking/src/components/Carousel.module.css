@@ -1,3 +1,22 @@
-.carouselImgs{
-    height:93vh;
-}
+.carouselImgs {
+    height: 400px; /* Adjust as needed */
+    object-fit: cover;
+  }
+  
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .captionTitle {
+    font-size: 1.75rem; /* Adjust as needed */
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .captionText {
+    font-size: 1.25rem; /* Adjust as needed */
+    color: #ddd;
+  }
+  
