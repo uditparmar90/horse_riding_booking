@@ -81,7 +81,8 @@ const HorseRideBookingForm = ({ show, horseData, horseId, onclose }) => {
                                 id={horse.horseId}
                                 value={horse.horseId}
                                 checked={horse.horseId === selectedHorseId}
-                                readOnly
+
+                                // required
                               />
                               <img
                                 className="card-img-top"
@@ -125,6 +126,7 @@ const HorseRideBookingForm = ({ show, horseData, horseId, onclose }) => {
                           id="number"
                           placeholder="Enter phone no."
                           ref={userPhoneElement}
+                          required
                         />
                       </div>
                       <div className="form-group">
@@ -135,6 +137,7 @@ const HorseRideBookingForm = ({ show, horseData, horseId, onclose }) => {
                           id="Email"
                           placeholder="Enter email"
                           ref={userEmailElement}
+                          required
                         />
                       </div>
                       <div className="form-group">
@@ -144,6 +147,7 @@ const HorseRideBookingForm = ({ show, horseData, horseId, onclose }) => {
                           className="form-control"
                           id="Date"
                           ref={userDateElement}
+                          required
                         />
                       </div>
                       <div className="form-group">
@@ -153,6 +157,7 @@ const HorseRideBookingForm = ({ show, horseData, horseId, onclose }) => {
                           className="form-control"
                           id="Time"
                           ref={userTimeElement}
+                          required
                         />
                       </div>
                       <div className="d-flex justify-content-between mt-3">

@@ -1,8 +1,7 @@
 import rasing_horse from "../assets/rasing_horse.png";
-import marwari_horse from "../assets/Marwari_horse.jpg";
+import white_horse from "../assets/white_horse.jpg";
 import banner_horse from "../assets/banner_horse.jpg";
-import Australian_Stock_Horse from "../assets/Australian_Stock_Horse.jpg";
-import styles from "./Carousel.module.css";
+import styles from "./modules/Carousel.module.css";
 
 const Carousel = () => {
   return (
@@ -49,7 +48,7 @@ const Carousel = () => {
         </div>
         <div className="carousel-item">
           <img
-            src={Australian_Stock_Horse}
+            src={white_horse}
             className={`d-block w-100 ${styles.carouselImgs}`}
             alt="Horse carousel slide 2"
           />
@@ -63,7 +62,7 @@ const Carousel = () => {
         </div>
         <div className="carousel-item">
           <img
-            src={marwari_horse}
+            src={rasing_horse}
             className={`d-block w-100 ${styles.carouselImgs}`}
             alt="Horse carousel slide 3"
           />

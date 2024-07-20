@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import styles from "./Card.module.css";
+import styles from "./modules/Card.module.css";
 import HorseRideBookingForm from "./HorseRideBookingForm";
 import { useState } from "react";
 
@@ -39,14 +39,18 @@ const Card = ({ horseData }) => {
                   />
                   <div className="card-body">
                     <h4 className="card-title">{horse.horseName}</h4>
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      data-toggle="modal"
-                      onClick={() => handleBookRide(horse.horseId, horse.price)}
-                    >
-                      Book now Rs. {horse.price}
-                    </button>
+                    <center>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-toggle="modal"
+                        onClick={() =>
+                          handleBookRide(horse.horseId, horse.price)
+                        }
+                      >
+                        Book now Rs. {horse.price}
+                      </button>
+                    </center>
                   </div>
                 </div>
               </div>
